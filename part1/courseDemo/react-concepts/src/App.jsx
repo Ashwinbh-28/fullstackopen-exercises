@@ -1,26 +1,21 @@
+import { useState } from "react";
+const Display =({counter}) => <div>{counter}</div>
 
-const Hello = ({name, age}) => {
-  const bornYear = () => {return new Date().getFullYear() - age};
-  return (
-    <div>
-      <p>
-        Hello {name}, you are {age} years old
-      </p>
-      <p>So you were probably born in {bornYear()}</p>
-    </div>
-  )
-}
+const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
 
 const App = () => {
-  const name = 'Peter'
-  const age = 10
-
+  const [counter, setCounter] = useState(0);
+  const decrementValue = () => setCounter(counter - 1);
+  const incrementValue = () => setCounter(counter + 1);
+  const resetValue = () => setCounter(0);
   return (
     <div>
-      <h1>Greetings</h1>
-      <Hello name="Maya" age={26 + 10} />
-      <Hello name={name} age={age} />
+      <Display counter={counter} />
+      <Button onClick={decrementValue} text="decrement" />
+      <Button onClick={resetValue} text="reset" />
+      <Button onClick={incrementValue} text="increment" />
     </div>
-  )
-}
-export default App
+  );
+};
+
+export default App;
